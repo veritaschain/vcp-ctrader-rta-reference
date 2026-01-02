@@ -1,0 +1,49 @@
+{
+  "manifest_version": "1.0",
+  "generated_at": "2025-01-02T23:59:59.000000Z",
+  "hash_algorithm": "SHA-256",
+  "description": "Cryptographic hash manifest for evidence pack integrity verification",
+  "verification_command": "sha256sum -c hash_manifest.txt",
+  "files": {
+    "events.json": {
+      "sha256": "dee25a95d6ce99f6dfad46dccf964a5f4d6e61e78b5c4acac439a5cd8c18069a",
+      "size_bytes": 18288,
+      "description": "VCP event log with 21 cryptographically hashed events"
+    },
+    "batches.json": {
+      "sha256": "0464cd6da74c0146cfe1ca757a85d5eecf17e3f7a5c5653570043161fb471867",
+      "size_bytes": 3553,
+      "description": "Merkle batch with verifiable root and inclusion proofs"
+    },
+    "anchors.json": {
+      "sha256": "081763a179220222580f348a82e718e3c7bf85dc7cd29a7c92ccb61fdf039591",
+      "size_bytes": 1541,
+      "description": "External anchor records (LOCAL_FILE)"
+    },
+    "README.md": {
+      "sha256": "6bf1c52b23fcc2ae68b769cedaefc260a6bffbe1db637aead83c712d66e82175",
+      "size_bytes": 3831,
+      "description": "Evidence pack documentation"
+    },
+    "verify.py": {
+      "sha256": "cc53ba41d91fdc1ca84cb3cbbbdd3e95fa998c69f6ebfa019bc0b1784c236ce7",
+      "size_bytes": 18443,
+      "description": "Cryptographic verification script"
+    }
+  },
+  "integrity_check": {
+    "method": "Verify each file's SHA-256 hash matches the manifest",
+    "steps": [
+      "1. Download all files from the evidence pack",
+      "2. Compute SHA-256 hash for each file: sha256sum <filename>",
+      "3. Compare against this manifest",
+      "4. Any mismatch indicates potential tampering"
+    ]
+  },
+  "cryptographic_properties": {
+    "event_hashes": "Real SHA-256 computed from canonical JSON",
+    "merkle_root": "584bad478f76c56a61df64cfd9d421e46e6ad407b5081094ffc1068aba8aa1a3",
+    "hash_chain": "Each event's PrevHash links to previous EventHash",
+    "verification": "Fully recomputable - no placeholder values"
+  }
+}

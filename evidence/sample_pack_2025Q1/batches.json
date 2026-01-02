@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "generator": "VCP.CTrader.RTA",
+    "generated_at": "2026-01-02T22:30:06.613892Z",
+    "conformance_tier": "SILVER",
+    "total_batches": 1
+  },
+  "batches": [
+    {
+      "BatchID": "batch_20250102_001",
+      "MerkleRoot": "584bad478f76c56a61df64cfd9d421e46e6ad407b5081094ffc1068aba8aa1a3",
+      "EventCount": 21,
+      "StartTime": "2025-01-02T00:00:01.000000Z",
+      "EndTime": "2025-01-02T23:59:59.000000Z",
+      "ConformanceTier": "SILVER",
+      "HashAlgorithm": "SHA256",
+      "MerkleConstruction": "RFC6962",
+      "EventHashes": [
+        "66d55677398ac180177dc7599ddba05f5b0084e0b9b8227f6078acf9fd14f993",
+        "1ae0efa5f9ffa1a07caa041f7827bfaa6b5a1f6734bd7125f8f419c0c65db174",
+        "3d39a2150c760b4497e740bca52df874c5b62f356d9ead7146f8bf8954871579",
+        "810a200ba0e4f67fede77ca5283b6597461f5150ee4c5e370db0e2b7627349f1",
+        "a759d596eb9213dfd65ec1fe8e2cd5e03611685b654b1b0bdf77f8ac21addf95",
+        "101405fddadf21f30c6228806ab4d547ada28a9fa0ace1e82cc4f732ebe28cdb",
+        "50c10fc37978f67a171c1228c1383733837d027ecd063e8611debbd268ad7a9c",
+        "80bceca19d9a5c021edbb23435be444addb056da5a549460845bccf5ac7f026f",
+        "2dfd53c9d5922910045628a63f5dfbcd7ce463390b0c3e550142aa4f5b01f45a",
+        "cf107c95c47994a2a3066ceb7a42dc7ea41cc5407d8d34cf05b99d64b53da445",
+        "bacb70024b0f93da47b03322af32a3c22be92df4f3965da7b378d2204516137f",
+        "6179607f0648de1f529c775137868b2370c41f4124c4fe8da2a283ef6b550988",
+        "61bd5c9513dac2bb7157a79c4681c173e359797f224bc1be703d9e998a111172",
+        "30e9d37dbd6136942de503900cb8c91fbf3cef2370119e6399b2b47bdaf7ca99",
+        "f5f7e37a62957c28dde3197db61d63fa354bb029660fad8d5dad747256993170",
+        "4e234cb233584109c21e12f0bb40a3cbe46d4878fb8af7ee3de82f25f75137a1",
+        "26a703d4ca17658a7f0664d49c878748900641c6db1537fba012307abafd478c",
+        "8ef89435bdc88f5d4464f8ff1942b6c42ad273fb29f90f8b4543518845e55034",
+        "6c3847703f20df23730196fc4bd9ed38585b56e5ab049ea129f14795c376e1e1",
+        "178a79bb918ae3d163f2a944a46b1f06993b193ab609ff3d2dc88a4226a76254",
+        "41d624b2139cc5e0107c283f13dc2925c0d2a5ef4bca0950bdd90865df1334ad"
+      ],
+      "InclusionProofs": [
+        {
+          "EventID": "019b80d5-1412-79a2-82b0-f885a2c09db6",
+          "EventHash": "66d55677398ac180177dc7599ddba05f5b0084e0b9b8227f6078acf9fd14f993",
+          "LeafIndex": 0,
+          "MerkleRoot": "584bad478f76c56a61df64cfd9d421e46e6ad407b5081094ffc1068aba8aa1a3",
+          "TreeSize": 21,
+          "AuditPath": [
+            {
+              "hash": "07c5bdf7eee72d89fa206085a53418d38c5806036547fb12e8f4286cfbd55b6c",
+              "position": "right"
+            },
+            {
+              "hash": "26280148364890cfe355059a09ca7335893d606c1ee2261a83a57f5bfd04a211",
+              "position": "right"
+            },
+            {
+              "hash": "869486ef6ff16089afddc4b382ad8d521a82d06b666b4538c6b943c7c6e5ea31",
+              "position": "right"
+            },
+            {
+              "hash": "3b528524af3012830c61b23d4c862549516522e5131280de46fb67c6d9874015",
+              "position": "right"
+            },
+            {
+              "hash": "94ff2aa01045347685b6233f2a269f536b0d931a9afdf1984debd0b6491adb04",
+              "position": "right"
+            }
+          ]
+        }
+      ],
+      "IsAnchored": true,
+      "AnchorRecord": {
+        "AnchorID": "anchor_20250102_001",
+        "AnchorTarget": "LOCAL_FILE",
+        "AnchorTimestamp": "2025-01-02T23:30:00.000000Z"
+      }
+    }
+  ]
+}

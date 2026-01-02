@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "generator": "VCP.CTrader.RTA",
+    "generated_at": "2026-01-02T22:30:06.614320Z",
+    "conformance_tier": "SILVER",
+    "anchor_frequency": "24h",
+    "total_anchors": 1
+  },
+  "anchors": [
+    {
+      "AnchorID": "anchor_20250102_001",
+      "MerkleRoot": "584bad478f76c56a61df64cfd9d421e46e6ad407b5081094ffc1068aba8aa1a3",
+      "AnchorTimestamp": "2025-01-02T23:30:00.000000Z",
+      "AnchorTarget": "LOCAL_FILE",
+      "AnchorProof": {
+        "type": "LOCAL_FILE",
+        "filepath": "anchors/anchor_20250102_001.json",
+        "sha256": "c6d65534a310a53e7ac99984c5fcf2a3fc70da5a61783613d4d1873daebd6ca2",
+        "created_at": "2025-01-02T23:30:00.000000Z"
+      },
+      "EventCount": 21,
+      "BatchStartTime": "2025-01-02T00:00:01.000000Z",
+      "BatchEndTime": "2025-01-02T23:59:59.000000Z",
+      "ConformanceTier": "SILVER",
+      "BatchIDs": [
+        "batch_20250102_001"
+      ],
+      "Signature": null,
+      "VerificationStatus": "UNVERIFIED",
+      "Notes": "Local file anchor for Silver Tier compliance."
+    }
+  ],
+  "verification_instructions": {
+    "LOCAL_FILE": {
+      "description": "Local anchors store the Merkle root in a signed JSON file.",
+      "verification_steps": [
+        "1. Locate the anchor file at the specified filepath",
+        "2. Verify the file's SHA-256 hash matches the AnchorProof.sha256",
+        "3. Parse the anchor file and confirm MerkleRoot matches",
+        "4. Verify the anchor timestamp is within expected range"
+      ]
+    }
+  }
+}

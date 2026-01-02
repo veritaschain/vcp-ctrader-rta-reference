@@ -1,0 +1,540 @@
+{
+  "metadata": {
+    "version": "1.1",
+    "generator": "VCP.CTrader.RTA",
+    "generated_at": "2026-01-02T22:30:06.612876Z",
+    "policy_id": "com.example:ctrader-demo-v1",
+    "conformance_tier": "SILVER",
+    "issuer": "[MASKED_ORGANIZATION]",
+    "account_id": "[MASKED_ACCOUNT_ID]",
+    "broker": "[MASKED_BROKER]",
+    "total_events": 21,
+    "hash_algorithm": "SHA-256",
+    "merkle_construction": "RFC6962",
+    "date_range": {
+      "start": "2025-01-02T00:00:01.000000Z",
+      "end": "2025-01-02T23:59:59.000000Z"
+    }
+  },
+  "events": [
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1412-79a2-82b0-f885a2c09db6",
+        "EventType": "INIT",
+        "TimestampISO": "2025-01-02T00:00:01.000000Z",
+        "TimestampInt": 1735776001000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": null,
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "66d55677398ac180177dc7599ddba05f5b0084e0b9b8227f6078acf9fd14f993"
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "AlgorithmVersion": "1.0.0",
+        "DecisionReason": "System initialization - Trading session started"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1412-722e-9a14-38ce35146b85",
+        "EventType": "SIG",
+        "TimestampISO": "2025-01-02T08:15:23.000000Z",
+        "TimestampInt": 1735805723000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "66d55677398ac180177dc7599ddba05f5b0084e0b9b8227f6078acf9fd14f993",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "1ae0efa5f9ffa1a07caa041f7827bfaa6b5a1f6734bd7125f8f419c0c65db174"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "Side": "BUY",
+        "Price": 150.123
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "Confidence": 0.82,
+        "DecisionReason": "Technical analysis signal - [MASKED_INDICATOR] crossover detected"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1412-7d51-89a6-92b199d6eae7",
+        "EventType": "ORD",
+        "TimestampISO": "2025-01-02T08:15:23.000000Z",
+        "TimestampInt": 1735805723000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "1ae0efa5f9ffa1a07caa041f7827bfaa6b5a1f6734bd7125f8f419c0c65db174",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "3d39a2150c760b4497e740bca52df874c5b62f356d9ead7146f8bf8954871579"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-001",
+        "Side": "BUY",
+        "Volume": 10000,
+        "Price": 150.125,
+        "StopLoss": 149.825,
+        "TakeProfit": 150.625
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1412-73eb-b4ca-f29e4721d9af",
+        "EventType": "EXE",
+        "TimestampISO": "2025-01-02T08:15:24.000000Z",
+        "TimestampInt": 1735805724000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "3d39a2150c760b4497e740bca52df874c5b62f356d9ead7146f8bf8954871579",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "810a200ba0e4f67fede77ca5283b6597461f5150ee4c5e370db0e2b7627349f1"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-001",
+        "PositionID": "POS-DEMO-001",
+        "Side": "BUY",
+        "Volume": 10000,
+        "Price": 150.125,
+        "Commission": 0.5,
+        "Slippage": 0.002
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1412-783d-bb9f-c0e79f5c06e9",
+        "EventType": "SIG",
+        "TimestampISO": "2025-01-02T10:30:45.000000Z",
+        "TimestampInt": 1735813845000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "810a200ba0e4f67fede77ca5283b6597461f5150ee4c5e370db0e2b7627349f1",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "a759d596eb9213dfd65ec1fe8e2cd5e03611685b654b1b0bdf77f8ac21addf95"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "Side": "SELL",
+        "Price": 150.456
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "Confidence": 0.78,
+        "DecisionReason": "Take profit target approaching - Risk management signal"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-79c4-9482-95d6b491039c",
+        "EventType": "CLS",
+        "TimestampISO": "2025-01-02T10:30:46.000000Z",
+        "TimestampInt": 1735813846000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "a759d596eb9213dfd65ec1fe8e2cd5e03611685b654b1b0bdf77f8ac21addf95",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "101405fddadf21f30c6228806ab4d547ada28a9fa0ace1e82cc4f732ebe28cdb"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-002",
+        "PositionID": "POS-DEMO-001",
+        "Side": "SELL",
+        "Volume": 10000,
+        "EntryPrice": 150.125,
+        "ClosePrice": 150.456,
+        "RealizedPnL": 3310.0,
+        "Commission": 0.5,
+        "Swap": -12.5
+      },
+      "Governance": {
+        "DecisionReason": "Take profit executed - Target reached"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-77bb-b3fd-a21e3f8e2326",
+        "EventType": "SIG",
+        "TimestampISO": "2025-01-02T14:22:11.000000Z",
+        "TimestampInt": 1735827731000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "101405fddadf21f30c6228806ab4d547ada28a9fa0ace1e82cc4f732ebe28cdb",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "50c10fc37978f67a171c1228c1383733837d027ecd063e8611debbd268ad7a9c"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "Side": "SELL",
+        "Price": 150.789
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "Confidence": 0.85,
+        "DecisionReason": "Bearish divergence detected - [MASKED_INDICATOR] signal"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-772c-930b-379b8930a709",
+        "EventType": "ORD",
+        "TimestampISO": "2025-01-02T14:22:12.000000Z",
+        "TimestampInt": 1735827732000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "50c10fc37978f67a171c1228c1383733837d027ecd063e8611debbd268ad7a9c",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "80bceca19d9a5c021edbb23435be444addb056da5a549460845bccf5ac7f026f"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-003",
+        "Side": "SELL",
+        "Volume": 15000,
+        "Price": 150.785,
+        "StopLoss": 151.085,
+        "TakeProfit": 150.285
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-75bc-b009-e5f968b7f026",
+        "EventType": "EXE",
+        "TimestampISO": "2025-01-02T14:22:13.000000Z",
+        "TimestampInt": 1735827733000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "80bceca19d9a5c021edbb23435be444addb056da5a549460845bccf5ac7f026f",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "2dfd53c9d5922910045628a63f5dfbcd7ce463390b0c3e550142aa4f5b01f45a"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-003",
+        "PositionID": "POS-DEMO-002",
+        "Side": "SELL",
+        "Volume": 15000,
+        "Price": 150.783,
+        "Commission": 0.75,
+        "Slippage": -0.002
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-78a9-8e07-4c91aab6f8c6",
+        "EventType": "MOD",
+        "TimestampISO": "2025-01-02T15:45:00.000000Z",
+        "TimestampInt": 1735832700000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "2dfd53c9d5922910045628a63f5dfbcd7ce463390b0c3e550142aa4f5b01f45a",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "cf107c95c47994a2a3066ceb7a42dc7ea41cc5407d8d34cf05b99d64b53da445"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-003",
+        "PositionID": "POS-DEMO-002",
+        "PreviousStopLoss": 151.085,
+        "NewStopLoss": 150.683,
+        "PreviousTakeProfit": 150.285,
+        "NewTakeProfit": 150.185
+      },
+      "Governance": {
+        "DecisionReason": "Trailing stop adjustment - Breakeven lock activated"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-7685-9004-a1b327d612c6",
+        "EventType": "CLS",
+        "TimestampISO": "2025-01-02T17:30:22.000000Z",
+        "TimestampInt": 1735839022000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "cf107c95c47994a2a3066ceb7a42dc7ea41cc5407d8d34cf05b99d64b53da445",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "bacb70024b0f93da47b03322af32a3c22be92df4f3965da7b378d2204516137f"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-004",
+        "PositionID": "POS-DEMO-002",
+        "Side": "BUY",
+        "Volume": 15000,
+        "EntryPrice": 150.783,
+        "ClosePrice": 150.185,
+        "RealizedPnL": 8970.0,
+        "Commission": 0.75,
+        "Swap": 0.0
+      },
+      "Governance": {
+        "DecisionReason": "Take profit executed - Target reached"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-7303-ae00-e31015277b67",
+        "EventType": "SIG",
+        "TimestampISO": "2025-01-02T19:15:33.000000Z",
+        "TimestampInt": 1735845333000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "bacb70024b0f93da47b03322af32a3c22be92df4f3965da7b378d2204516137f",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "6179607f0648de1f529c775137868b2370c41f4124c4fe8da2a283ef6b550988"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "Side": "BUY",
+        "Price": 149.876
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "Confidence": 0.71,
+        "DecisionReason": "Support level bounce - [MASKED_INDICATOR] confirmation"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-702c-8f87-14f34fb4d98a",
+        "EventType": "ORD",
+        "TimestampISO": "2025-01-02T19:15:34.000000Z",
+        "TimestampInt": 1735845334000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "6179607f0648de1f529c775137868b2370c41f4124c4fe8da2a283ef6b550988",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "61bd5c9513dac2bb7157a79c4681c173e359797f224bc1be703d9e998a111172"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-005",
+        "Side": "BUY",
+        "Volume": 20000,
+        "Price": 149.88,
+        "StopLoss": 149.58,
+        "TakeProfit": 150.38
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-731c-a2f9-d306c0fc2442",
+        "EventType": "REJ",
+        "TimestampISO": "2025-01-02T19:15:35.000000Z",
+        "TimestampInt": 1735845335000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "61bd5c9513dac2bb7157a79c4681c173e359797f224bc1be703d9e998a111172",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "30e9d37dbd6136942de503900cb8c91fbf3cef2370119e6399b2b47bdaf7ca99"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-005"
+      },
+      "Error": {
+        "ErrorCode": "OFF_QUOTES",
+        "ErrorMessage": "Price changed during order processing",
+        "Severity": "WARNING"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-73dd-96b7-353f5b0e2d12",
+        "EventType": "SIG",
+        "TimestampISO": "2025-01-02T19:15:37.000000Z",
+        "TimestampInt": 1735845337000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "30e9d37dbd6136942de503900cb8c91fbf3cef2370119e6399b2b47bdaf7ca99",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "f5f7e37a62957c28dde3197db61d63fa354bb029660fad8d5dad747256993170"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "Side": "BUY",
+        "Price": 149.892
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "Confidence": 0.71,
+        "DecisionReason": "Retry after rejection - Updated price"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-77a9-b5f9-ad0f551a9df6",
+        "EventType": "ORD",
+        "TimestampISO": "2025-01-02T19:15:38.000000Z",
+        "TimestampInt": 1735845338000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "f5f7e37a62957c28dde3197db61d63fa354bb029660fad8d5dad747256993170",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "4e234cb233584109c21e12f0bb40a3cbe46d4878fb8af7ee3de82f25f75137a1"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-006",
+        "Side": "BUY",
+        "Volume": 20000,
+        "Price": 149.895,
+        "StopLoss": 149.595,
+        "TakeProfit": 150.395
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-7c56-bb02-883f7dd9c78b",
+        "EventType": "EXE",
+        "TimestampISO": "2025-01-02T19:15:39.000000Z",
+        "TimestampInt": 1735845339000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "4e234cb233584109c21e12f0bb40a3cbe46d4878fb8af7ee3de82f25f75137a1",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "26a703d4ca17658a7f0664d49c878748900641c6db1537fba012307abafd478c"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-006",
+        "PositionID": "POS-DEMO-003",
+        "Side": "BUY",
+        "Volume": 20000,
+        "Price": 149.897,
+        "Commission": 1.0,
+        "Slippage": 0.002
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-77ab-9a85-0eaf3fcc1ecb",
+        "EventType": "ERR_CONN",
+        "TimestampISO": "2025-01-02T20:00:00.000000Z",
+        "TimestampInt": 1735848000000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "26a703d4ca17658a7f0664d49c878748900641c6db1537fba012307abafd478c",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "8ef89435bdc88f5d4464f8ff1942b6c42ad273fb29f90f8b4543518845e55034"
+      },
+      "Error": {
+        "ErrorCode": "CONNECTION_LOST",
+        "ErrorMessage": "Connection to broker server lost",
+        "Severity": "WARNING",
+        "Context": "Temporary network interruption"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-73b7-8be8-b66d298a239d",
+        "EventType": "ERR_RECOVER",
+        "TimestampISO": "2025-01-02T20:00:05.000000Z",
+        "TimestampInt": 1735848005000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "8ef89435bdc88f5d4464f8ff1942b6c42ad273fb29f90f8b4543518845e55034",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "6c3847703f20df23730196fc4bd9ed38585b56e5ab049ea129f14795c376e1e1"
+      },
+      "Error": {
+        "ErrorCode": "RECOVERED",
+        "ErrorMessage": "Connection restored after 3 retries",
+        "Severity": "INFO",
+        "RecoveredFrom": "ERR_CONN"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-7a94-b6ac-ed0eed77d871",
+        "EventType": "CLS",
+        "TimestampISO": "2025-01-02T22:45:55.000000Z",
+        "TimestampInt": 1735857955000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "6c3847703f20df23730196fc4bd9ed38585b56e5ab049ea129f14795c376e1e1",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "178a79bb918ae3d163f2a944a46b1f06993b193ab609ff3d2dc88a4226a76254"
+      },
+      "Trade": {
+        "Symbol": "XXXYYY",
+        "OrderID": "ORD-DEMO-007",
+        "PositionID": "POS-DEMO-003",
+        "Side": "SELL",
+        "Volume": 20000,
+        "EntryPrice": 149.897,
+        "ClosePrice": 149.595,
+        "RealizedPnL": -6040.0,
+        "Commission": 1.0,
+        "Swap": -25.0
+      },
+      "Governance": {
+        "DecisionReason": "Stop loss triggered - Risk limit protection"
+      }
+    },
+    {
+      "Header": {
+        "Version": "1.1",
+        "EventID": "019b80d5-1413-79f4-8a0f-5ff9721cd819",
+        "EventType": "INIT",
+        "TimestampISO": "2025-01-02T23:59:59.000000Z",
+        "TimestampInt": 1735862399000000,
+        "HashAlgo": "SHA256",
+        "SignAlgo": "ED25519",
+        "PrevHash": "178a79bb918ae3d163f2a944a46b1f06993b193ab609ff3d2dc88a4226a76254",
+        "ClockSyncStatus": "BEST_EFFORT",
+        "TimestampPrecision": "MILLISECOND",
+        "EventHash": "41d624b2139cc5e0107c283f13dc2925c0d2a5ef4bca0950bdd90865df1334ad"
+      },
+      "Governance": {
+        "AlgorithmName": "[MASKED_ALGORITHM]",
+        "AlgorithmVersion": "1.0.0",
+        "DecisionReason": "System shutdown - Trading session ended"
+      }
+    }
+  ]
+}

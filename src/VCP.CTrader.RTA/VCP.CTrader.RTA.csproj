@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>VCP.CTrader</RootNamespace>
+    <AssemblyName>VCP.CTrader.RTA</AssemblyName>
+    <Version>1.1.0</Version>
+    <Authors>VeritasChain Standards Organization</Authors>
+    <Company>VSO</Company>
+    <Product>VCP cTrader RTA Reference</Product>
+    <Description>VeritasChain Protocol (VCP) v1.1 Reference Implementation for cTrader</Description>
+    <Copyright>Copyright (c) 2025 VeritasChain Standards Organization</Copyright>
+    <PackageLicenseExpression>CC-BY-4.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/veritaschain/vcp-ctrader-rta-reference</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/veritaschain/vcp-ctrader-rta-reference.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>vcp;ctrader;audit;merkle;blockchain;trading</PackageTags>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\VCP.CTrader.RTA.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
+  </ItemGroup>
+
+  <!-- Optional: For Ed25519 signatures in production -->
+  <!-- 
+  <ItemGroup>
+    <PackageReference Include="Chaos.NaCl" Version="1.0.0" />
+  </ItemGroup>
+  -->
+
+</Project>

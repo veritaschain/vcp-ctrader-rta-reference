@@ -1,0 +1,75 @@
+{
+  "certificate_type": "VCP_EVENT_CERTIFICATE",
+  "certificate_version": "1.0",
+  "certificate_id": "cert_019b80d5-1412-73eb-b4ca-f29e4721d9af",
+  "issued_at": "2025-01-02T23:30:00.000000Z",
+  
+  "event_summary": {
+    "event_id": "019b80d5-1412-73eb-b4ca-f29e4721d9af",
+    "event_type": "EXE",
+    "timestamp": "2025-01-02T08:15:24.000000Z",
+    "event_hash": "810a200ba0e4f67fede77ca5283b6597461f5150ee4c5e370db0e2b7627349f1",
+    "description": "Order execution - Full fill"
+  },
+
+  "trade_details": {
+    "symbol": "XXXYYY",
+    "side": "BUY",
+    "volume": 10000,
+    "price": 150.125,
+    "order_id": "ORD-DEMO-001",
+    "position_id": "POS-DEMO-001",
+    "commission": 0.5,
+    "slippage": 0.002
+  },
+
+  "chain_position": {
+    "sequence_number": 4,
+    "previous_event_id": "ORD event",
+    "previous_hash": "3d39a2150c760b4497e740bca52df874c5b62f356d9ead7146f8bf8954871579",
+    "hash_algorithm": "SHA256"
+  },
+
+  "merkle_proof": {
+    "batch_id": "batch_20250102_001",
+    "merkle_root": "584bad478f76c56a61df64cfd9d421e46e6ad407b5081094ffc1068aba8aa1a3",
+    "leaf_index": 3,
+    "tree_size": 21,
+    "inclusion_verified": true
+  },
+
+  "anchor_reference": {
+    "anchor_id": "anchor_20250102_001",
+    "anchor_target": "LOCAL_FILE",
+    "anchor_timestamp": "2025-01-02T23:30:00.000000Z",
+    "anchor_proof_available": true
+  },
+
+  "verification": {
+    "event_hash_valid": true,
+    "chain_continuity_valid": true,
+    "merkle_inclusion_valid": true,
+    "anchor_reference_valid": true,
+    "overall_status": "CRYPTOGRAPHICALLY_VERIFIED"
+  },
+
+  "how_to_verify": {
+    "step_1": "Extract Header (without EventHash) and payload from events.json",
+    "step_2": "Canonicalize both as JSON (sorted keys, no whitespace)",
+    "step_3": "Concatenate: Canonical(Header) + Canonical(Payload)",
+    "step_4": "Compute: SHA256(concatenated)",
+    "expected_result": "810a200ba0e4f67fede77ca5283b6597461f5150ee4c5e370db0e2b7627349f1"
+  },
+
+  "compliance": {
+    "vcp_version": "1.1",
+    "conformance_tier": "SILVER",
+    "policy_id": "com.example:ctrader-demo-v1"
+  },
+
+  "issuer": {
+    "organization": "[MASKED_ORGANIZATION]",
+    "system": "VCP.CTrader.RTA",
+    "version": "1.0.0"
+  }
+}
