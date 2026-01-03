@@ -263,6 +263,12 @@ This project is licensed under [CC BY 4.0](LICENSE) - Creative Commons Attributi
 - RFC 6962 (Certificate Transparency) for Merkle tree construction standards
 - RFC 9562 for UUID v7 specification
 
+---
+
+**Disclaimer**: This is a reference implementation for educational and development purposes. Production deployments should undergo thorough security review and testing.
+
+---
+
 ### Data Masking
 
 The sample evidence pack uses the following masking conventions:
@@ -279,7 +285,3 @@ The sample evidence pack uses the following masking conventions:
 **Important**: Despite masking, all SHA-256 hashes are **real cryptographic computations** 
 and remain fully verifiable. The masking affects only human-readable metadata, 
 not the cryptographic integrity of the audit trail.
-
----
-
-**Disclaimer**: This is a reference implementation for educational and development purposes. Production deployments should undergo thorough security review and testing.
