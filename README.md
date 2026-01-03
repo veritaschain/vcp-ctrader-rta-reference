@@ -263,6 +263,23 @@ This project is licensed under [CC BY 4.0](LICENSE) - Creative Commons Attributi
 - RFC 6962 (Certificate Transparency) for Merkle tree construction standards
 - RFC 9562 for UUID v7 specification
 
+### Data Masking
+
+The sample evidence pack uses the following masking conventions:
+
+| Original Data | Masked Value | Purpose |
+|---------------|--------------|---------|
+| Organization name | `[MASKED_ORGANIZATION]` | Privacy protection |
+| Account ID | `[MASKED_ACCOUNT_ID]` | Account privacy |
+| Broker name | `[MASKED_BROKER]` | Broker confidentiality |
+| Algorithm name | `[MASKED_ALGORITHM]` | IP protection |
+| Technical indicators | `[MASKED_INDICATOR]` | Strategy confidentiality |
+| Currency pair | `XXXYYY` | Symbol anonymization |
+
+**Important**: Despite masking, all SHA-256 hashes are **real cryptographic computations** 
+and remain fully verifiable. The masking affects only human-readable metadata, 
+not the cryptographic integrity of the audit trail.
+
 ---
 
 **Disclaimer**: This is a reference implementation for educational and development purposes. Production deployments should undergo thorough security review and testing.
