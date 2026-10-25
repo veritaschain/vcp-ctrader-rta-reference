@@ -184,7 +184,7 @@ Overall: ✓ PASSED
 2. Use provided Python scripts for automated verification
 3. Cross-reference with broker trade confirmations
 4. Verify anchor timestamps against external sources
-5. Confirm compliance with VCP Silver Tier requirements
+5. Assess conformance with VCP Silver Tier requirements (a LOCAL_FILE anchor is not an external anchor)
 
 ## Common Issues
 
@@ -236,7 +236,7 @@ Computes the SHA-256 hash for an event.
 
 ## Further Reading
 
-- [VCP Specification v1.1](https://github.com/veritaschain/vcp-specification)
+- [VCP Specification](https://github.com/veritaschain/vcp-spec)
 - [RFC 6962 - Certificate Transparency](https://tools.ietf.org/html/rfc6962)
 - [RFC 3161 - Time-Stamp Protocol](https://tools.ietf.org/html/rfc3161)
 - [OpenTimestamps](https://opentimestamps.org/)
