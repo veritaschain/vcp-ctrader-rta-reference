@@ -2,7 +2,7 @@
 >
 > - This is first-party reference code by VeritasChain Co., Ltd., which operates the VeritasChain Standards Organization (VSO). It targets VCP v1.1 (Silver tier). VCP v1.1 has no tagged release and is superseded by VCP v1.2 (Released, tag `v1.2.0`).
 > - Conformance to any VCP tier, or to VAP, has not been independently established. There are zero external implementations of VAP or any of its profiles, including VCP.
-> - Not certified. VSO does not issue certificates. The certification scheme requires a Conformity Assessment Body (CAB) independent of the scheme owner; the only registered CAB, VeritasChain Co., Ltd., is not independent (VAP v1.2 ERRATA E-2026-10-21).
+> - Not certified. VSO does not issue certifications itself. The certification scheme requires a Conformity Assessment Body (CAB) independent of the scheme owner; the only registered CAB, VeritasChain Co., Ltd., is not independent (VAP v1.2 ERRATA E-2026-10-21).
 > - Known limitations of the sample evidence pack: its only anchor (`anchors.json`) uses `AnchorTarget: "LOCAL_FILE"` with `Signature: null` and `VerificationStatus: "UNVERIFIED"`. A local file is not an external anchor, so the pack does not meet the external-anchoring requirement (VAP v1.2 INT-006; VCP Silver). The events carry no signatures. The Merkle builder (`VCPMerkleTree.cs`, `verify.py`) duplicates the last node at odd-sized levels; it uses the RFC 6962 hash prefixes but not the RFC 6962 tree algorithm.
 > - Files under `evidence/sample_pack_2025Q1/` (including its README and `verify.py`) are covered by `hash_manifest.json` and are left unchanged; statements there predate this correction.
 
@@ -20,7 +20,7 @@ Reference implementation demonstrating **VeritasChain Protocol (VCP) v1.1** audi
 ## Features
 
 - 🔐 **VCP v1.1 Silver target** - Conformance not established (see the status correction above)
-- 🌳 **RFC 6962 Merkle Trees** - Domain-separated hash construction with second preimage attack protection
+- 🌳 **Merkle Trees (RFC 6962 hash prefixes)** - Domain-separated leaf/node hashing; odd-sized levels duplicate the last node (not the RFC 6962 tree algorithm)
 - ⚓ **Anchoring** - Local file (not an external anchor), OpenTimestamps (Bitcoin), FreeTSA code paths; the sample pack uses only a local file
 - 📝 **Complete Event Types** - SIG, ORD, ACK, EXE, PRT, CLS, MOD, CXL, REJ, ERR_*
 - 🔄 **Automatic Batching** - Configurable batch sizes with automatic Merkle root generation
