@@ -1,9 +1,17 @@
+> **Status correction — 25 October 2026**
+>
+> - This is first-party reference code by VeritasChain Co., Ltd., which operates the VeritasChain Standards Organization (VSO). It targets VCP v1.1 (Silver tier). VCP v1.1 has no tagged release and is superseded by VCP v1.2 (Released, tag `v1.2.0`).
+> - Conformance to any VCP tier, or to VAP, has not been independently established. There are zero external implementations of VAP or any of its profiles, including VCP.
+> - Not certified. VSO does not issue certifications itself. The certification scheme requires a Conformity Assessment Body (CAB) independent of the scheme owner; the only registered CAB, VeritasChain Co., Ltd., is not independent (VAP v1.2 ERRATA E-2026-10-21).
+> - Known limitations of the sample evidence pack: its only anchor (`anchors.json`) uses `AnchorTarget: "LOCAL_FILE"` with `Signature: null` and `VerificationStatus: "UNVERIFIED"`. A local file is not an external anchor, so the pack does not meet the external-anchoring requirement (VAP v1.2 INT-006; VCP Silver). The events carry no signatures. The Merkle builder (`VCPMerkleTree.cs`, `verify.py`) duplicates the last node at odd-sized levels; it uses the RFC 6962 hash prefixes but not the RFC 6962 tree algorithm.
+> - All files under `evidence/sample_pack_2025Q1/` are left unchanged. The five files listed in its `hash_manifest.json`, including its README and `verify.py`, are hash-covered; statements in the preserved files predate this correction.
+
 # VCP cTrader RTA Reference Implementation
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![.NET](https://img.shields.io/badge/.NET-6.0%2B-blue.svg)](https://dotnet.microsoft.com/)
-[![VCP Version](https://img.shields.io/badge/VCP-v1.1-green.svg)](https://github.com/veritaschain/vcp-specification)
-[![Evidence Verification](https://img.shields.io/badge/Evidence-Verified-brightgreen.svg)](#sample-evidence-pack)
+[![VCP Version](https://img.shields.io/badge/VCP-v1.1-green.svg)](https://github.com/veritaschain/vcp-spec)
+[![Status](https://img.shields.io/badge/Status-Non--certified-orange.svg)](#sample-evidence-pack)
 
 > **This is a non-certified reference implementation and evidence pack for independent verification. No endorsement or regulatory approval is implied.**
 
@@ -11,9 +19,9 @@ Reference implementation demonstrating **VeritasChain Protocol (VCP) v1.1** audi
 
 ## Features
 
-- 🔐 **VCP v1.1 Compliant** - Full specification compliance for Silver Tier
-- 🌳 **RFC 6962 Merkle Trees** - Domain-separated hash construction with second preimage attack protection
-- ⚓ **External Anchoring** - Local file, OpenTimestamps (Bitcoin), FreeTSA support
+- 🔐 **VCP v1.1 Silver target** - Conformance not established (see the status correction above)
+- 🌳 **Merkle Trees (RFC 6962 hash prefixes)** - Domain-separated leaf/node hashing; odd-sized levels duplicate the last node (not the RFC 6962 tree algorithm)
+- ⚓ **Anchoring** - Local file (not an external anchor), OpenTimestamps (Bitcoin), FreeTSA code paths; the sample pack uses only a local file
 - 📝 **Complete Event Types** - SIG, ORD, ACK, EXE, PRT, CLS, MOD, CXL, REJ, ERR_*
 - 🔄 **Automatic Batching** - Configurable batch sizes with automatic Merkle root generation
 - 📊 **Verification Export** - Self-contained verification packages with Python scripts
@@ -120,7 +128,7 @@ public class MyVCPBot : Robot
                               ▼
               ┌───────────────────────────────┐
               │     External Anchors          │
-              │  • Local File (required)      │
+              │  • Local File (not external)  │
               │  • OpenTimestamps (Bitcoin)   │
               │  • FreeTSA (RFC 3161)         │
               │  • Custom HTTP endpoint       │
@@ -180,7 +188,7 @@ cat hash_manifest.json | python3 -c "import sys,json; [print(f'{k}: {v[\"sha256\
 python verify.py
 ```
 
-The sample contains 24 VCP events demonstrating:
+The sample contains 21 VCP events (per `events.json` and `hash_manifest.json`) demonstrating:
 - Trading signals and executions
 - Order lifecycle (SIG → ORD → ACK → EXE → CLS)
 - Error handling and recovery
@@ -190,9 +198,9 @@ The sample contains 24 VCP events demonstrating:
 
 > ⚠️ **Note**: Personal identifiers (organization, account, broker, algorithm names) have been masked. Currency symbols shown as `XXXYYY`.
 
-## Silver Tier Compliance
+## Silver Tier Target
 
-This implementation targets **VCP Silver Tier** for retail trading systems:
+This implementation targets **VCP Silver Tier** for retail trading systems. Conformance has not been established. A local file anchor is not an external anchor under VAP v1.2 INT-006, and the Merkle construction duplicates odd nodes rather than following the RFC 6962 tree algorithm:
 
 | Requirement | Implementation |
 |-------------|----------------|
@@ -203,7 +211,7 @@ This implementation targets **VCP Silver Tier** for retail trading systems:
 | Throughput | >1K events/second |
 | Latency | <1 second |
 | Hash Algorithm | SHA-256 |
-| Merkle Construction | RFC 6962 (domain-separated) |
+| Merkle Construction | RFC 6962 hash prefixes; odd-node duplication (not the RFC 6962 tree algorithm) |
 
 ## Event Types
 
@@ -250,8 +258,8 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 ## Related Projects
 
-- [VCP Specification](https://github.com/veritaschain/vcp-specification) - Official VCP specification
-- [VCP MT5 Reference](https://github.com/veritaschain/vcp-mt5-rta-reference) - MetaTrader 5 implementation
+- [VCP Specification](https://github.com/veritaschain/vcp-spec) - Official VCP specification
+- [VCP RTA Reference](https://github.com/veritaschain/vcp-rta-reference) - MetaTrader 5 implementation
 
 ## License
 
