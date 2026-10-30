@@ -140,10 +140,12 @@ def verify_tsa_anchor(merkle_root, tsa_response):
 
 ## Automated Verification
 
-The preserved sample pack's `verify.py` runs the implemented legacy local checks. Its success result does not establish signature verification, external timestamp verification, or VCP tier conformance:
+The preserved sample pack's `verify.py` runs the implemented legacy local checks. Its success result does not establish signature verification, external timestamp verification, or VCP tier conformance.
+
+Run from the repository root:
 
 ```bash
-cd audit_2025Q1
+cd evidence/sample_pack_2025Q1
 python verify.py
 ```
 
