@@ -62,11 +62,11 @@ This document describes the architecture of the VCP cTrader RTA Reference Implem
 
 ### 2. VCPMerkleTree
 
-**Purpose**: RFC 6962-compliant Merkle tree construction
+**Purpose**: Historical PoC Merkle tree with odd-node duplication. It uses RFC-style hash prefixes but is not the RFC 6962/9162 split construction. See [construction limits](MERKLE_LIMITATIONS.md); the historical pack and its roots are unchanged.
 
 **Features**:
 - Domain-separated hashing (0x00 for leaves, 0x01 for internal nodes)
-- Second preimage attack protection
+- Domain separation between leaf and internal-node inputs; no claim of RFC tree conformance
 - Inclusion proof generation and verification
 
 **Algorithm**:

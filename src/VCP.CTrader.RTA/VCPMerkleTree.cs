@@ -1,7 +1,7 @@
 // ================================================================================
-// VCPMerkleTree.cs - VCP v1.1 Merkle Tree Implementation (RFC 6962 Compliant)
+// VCPMerkleTree.cs - VCP v1.1 Historical PoC Merkle Tree (odd-node duplication; not RFC 6962/9162)
 // ================================================================================
-// VCP仕様書 v1.1 Section 6.2準拠 - Merkleツリー構築
+// VCP v1.1向けの過去のPoC - 規格準拠は未確立。構築方式は docs/MERKLE_LIMITATIONS.md を参照
 // cTrader cBot プラグインとして動作
 // ================================================================================
 
@@ -113,7 +113,7 @@ namespace VCP.CTrader
 
     /// <summary>
     /// VCP v1.1 Merkleツリー実装
-    /// RFC 6962準拠 - 第二プレイメージ攻撃対策済み
+    /// RFC形式の接頭辞を使用。奇数ノード複製方式はRFC 6962/9162の分割方式とは異なる
     /// </summary>
     public class VCPMerkleTree
     {
@@ -205,7 +205,7 @@ namespace VCP.CTrader
 
         /// <summary>
         /// Merkleツリーを構築（内部メソッド）
-        /// RFC 6962準拠
+        /// 過去の奇数ノード複製方式を保持（RFC 6962/9162非準拠）
         /// </summary>
         private void BuildTree(List<string> eventHashes)
         {
@@ -247,7 +247,7 @@ namespace VCP.CTrader
                     }
                     else
                     {
-                        // 奇数の場合は最後のノードを複製
+                        // 過去の奇数ノード複製方式を保持。RFC 6962/9162の分割方式ではない
                         right = left;
                     }
 
@@ -277,7 +277,7 @@ namespace VCP.CTrader
         }
 
         /// <summary>
-        /// RFC 6962準拠のMerkleハッシュを計算
+        /// RFC形式のドメイン分離接頭辞によるハッシュ計算（ツリー構築方式の準拠を示さない）
         /// </summary>
         private byte[] ComputeMerkleHash(byte[] data, bool isLeaf)
         {
@@ -411,7 +411,7 @@ namespace VCP.CTrader
         }
 
         /// <summary>
-        /// RFC 6962準拠のMerkleハッシュを計算（静的メソッド）
+        /// RFC形式のドメイン分離接頭辞によるハッシュ計算（ツリー構築方式の準拠を示さない）（静的メソッド）
         /// </summary>
         private static byte[] ComputeMerkleHashStatic(byte[] data, bool isLeaf)
         {

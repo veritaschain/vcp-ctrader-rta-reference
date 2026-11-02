@@ -15,7 +15,16 @@
 
 > **This is a non-certified reference implementation and evidence pack for independent verification. No endorsement or regulatory approval is implied.**
 
-Reference implementation demonstrating **VeritasChain Protocol (VCP) v1.1** audit trails for cTrader-based trading workflows. This repository contains a verifiable evidence pack generated from a live cTrader environment, enabling independent third-party verification of order and execution logs.
+Reference implementation demonstrating **VeritasChain Protocol (VCP) v1.1** audit trails for cTrader-based trading workflows. This repository retains a first-party historical evidence pack for inspecting order and execution logs. Its earlier live-environment provenance description is not independently established by the public pack.
+
+## Merkle documentation correction — 2 November 2026
+
+The current C# source comments and architecture document now explicitly describe
+the historical odd-node duplication algorithm. This correction changes no
+executable C# statements, event bytes, tree roots, proof paths or fixed evidence
+pack files. The preserved pack's README and verifier still contain historical
+RFC/compliance wording; their hash manifest remains unchanged. Read the current
+[construction limitations](docs/MERKLE_LIMITATIONS.md) before using that pack.
 
 ## Features
 
@@ -293,3 +302,11 @@ The sample evidence pack uses the following masking conventions:
 **Important**: Despite masking, all SHA-256 hashes are **real cryptographic computations** 
 and remain fully verifiable. The masking affects only human-readable metadata, 
 not the cryptographic integrity of the audit trail.
+
+## License scope clarification — 2 November 2026
+
+Documentation remains CC BY 4.0. First-party code, scripts, code examples and schemas additionally offer [Apache-2.0](LICENSE-CODE); existing licenses and third-party notices remain in effect. See [LICENSE](LICENSE) for the scope and preserved prior terms. This editorial licensing note does not change protocol requirements or claim conformance.
+
+## Historical research archive — 2 November 2026
+
+The [English research report](docs/VCP_cTrader_World_First_Evidence_Report_EN.pdf) and [Japanese research report](docs/VCP_cTrader_World_First_Evidence_Report_JA.pdf) are historical first-party records, not current priority claims or independent validation. The byte-identical English duplicate at the repository root has been removed; the docs/ archive bytes are unchanged. The current introduction no longer presents the historical live-environment description as established provenance.
