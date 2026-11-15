@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+  <!-- Compile the current source directly for an offline export-path smoke test.
+       This does not assess the legacy net6.0 package or cTrader integration. -->
+  <ItemGroup>
+    <Compile Include="../../src/VCP.CTrader.RTA/*.cs" />
+  </ItemGroup>
+</Project>

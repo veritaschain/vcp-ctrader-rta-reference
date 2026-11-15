@@ -675,25 +675,36 @@ namespace VCP.CTrader
         private string GenerateVerificationScript()
         {
             return @"#!/usr/bin/env python3
-# VCP v1.1 検証スクリプト
-# このスクリプトでエビデンスパッケージの整合性を検証できます
+# Legacy VCP export: local batch-root checks only, not authenticated verification.
 
+import argparse
 import json
 import hashlib
+import math
+import re
 from pathlib import Path
+
 
 def compute_merkle_hash(data: bytes, is_leaf: bool = True) -> bytes:
     prefix = b'\x00' if is_leaf else b'\x01'
     return hashlib.sha256(prefix + data).digest()
 
+def _hash(value):
+    if not isinstance(value, str) or re.fullmatch(r'[0-9a-fA-F]{64}', value) is None:
+        raise ValueError('expected a 32-byte hexadecimal hash')
+    return value
+
+
 def verify_merkle_root(event_hashes: list, expected_root: str) -> bool:
-    if not event_hashes:
+    # Preserve the historical odd-node duplication algorithm, not RFC 6962.
+    if not isinstance(event_hashes, list) or not event_hashes:
         return False
-    
-    # リーフノード作成
-    current_level = [compute_merkle_hash(bytes.fromhex(h), is_leaf=True) for h in event_hashes]
-    
-    # ツリー構築
+    try:
+        expected_root = _hash(expected_root)
+        current_level = [compute_merkle_hash(bytes.fromhex(_hash(h))) for h in event_hashes]
+    except (TypeError, ValueError):
+        return False
+
     while len(current_level) > 1:
         next_level = []
         for i in range(0, len(current_level), 2):
@@ -706,32 +717,98 @@ def verify_merkle_root(event_hashes: list, expected_root: str) -> bool:
     computed_root = current_level[0].hex()
     return computed_root == expected_root.lower()
 
-def main():
-    base_path = Path(__file__).parent
-    
-    # バッチ読込
-    with open(base_path / 'batches.json', 'r', encoding='utf-8') as f:
-        batches = json.load(f)
-    
-    print('=== VCP エビデンスパッケージ検証 ===\n')
-    
-    for batch in batches:
-        batch_id = batch['BatchID'][:8]
-        merkle_root = batch['MerkleRoot']
-        event_hashes = batch['EventHashes']
-        
-        is_valid = verify_merkle_root(event_hashes, merkle_root)
-        status = '✓ 検証成功' if is_valid else '✗ 検証失敗'
-        
-        print(f'バッチ {batch_id}: {status}')
-        print(f'  イベント数: {batch[""EventCount""]}')
-        print(f'  Merkleルート: {merkle_root[:16]}...')
-        print()
-    
-    print('検証完了')
+
+def _unique_object(pairs):
+    result = {}
+    for key, value in pairs:
+        if key in result:
+            raise ValueError('duplicate JSON member')
+        result[key] = value
+    return result
+
+
+def _reject_constant(value):
+    raise ValueError('non-finite JSON number')
+
+
+def _finite_float(value):
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError('JSON number exceeds the supported finite range')
+    return number
+
+
+def check_batches(base_path):
+    print('Scope: supplied batch hashes, counts and local Merkle roots only.')
+    print('NOT VERIFIED: event payloads, hash chains, inclusion proofs, signatures,')
+    print('external anchors, origin, completeness or VCP conformity.')
+    try:
+        # File.WriteAllTextAsync(..., Encoding.UTF8) exports a UTF-8 BOM.
+        with (Path(base_path) / 'batches.json').open(encoding='utf-8-sig') as source:
+            batches = json.load(source, object_pairs_hook=_unique_object,
+                                parse_constant=_reject_constant, parse_float=_finite_float)
+    except OSError as exc:
+        print('INDETERMINATE: batches.json unavailable (' + type(exc).__name__ + ')')
+        return 2
+    except (ValueError, UnicodeError, RecursionError):
+        print('INVALID: malformed or unsupported JSON in batches.json')
+        return 1
+    if not isinstance(batches, list):
+        print('INVALID: expected the current export format, an array of batches')
+        return 1
+    if not batches:
+        print('INDETERMINATE: no batches supplied')
+        return 2
+
+    invalid, incomplete, seen = False, False, set()
+    for index, batch in enumerate(batches):
+        try:
+            if not isinstance(batch, dict):
+                raise ValueError('batch must be an object')
+            batch_id = batch['BatchID']
+            if not isinstance(batch_id, str) or not batch_id or batch_id in seen:
+                raise ValueError('invalid or duplicate batch ID')
+            seen.add(batch_id)
+            event_hashes = batch['EventHashes']
+            if not isinstance(event_hashes, list):
+                raise ValueError('EventHashes must be an array')
+            if type(batch['EventCount']) is not int or batch['EventCount'] != len(event_hashes):
+                raise ValueError('batch event count mismatch')
+            merkle_root = _hash(batch['MerkleRoot'])
+            for event_hash in event_hashes:
+                _hash(event_hash)
+            if not event_hashes:
+                incomplete = True
+                print(f'Batch {batch_id!r}: INDETERMINATE (no event hashes)')
+            elif verify_merkle_root(event_hashes, merkle_root):
+                print(f'Batch {batch_id!r}: local Merkle root MATCH')
+            else:
+                invalid = True
+                print(f'Batch {batch_id!r}: INVALID (Merkle root mismatch)')
+        except (KeyError, TypeError, ValueError):
+            invalid = True
+            print(f'Batch at index {index}: INVALID (malformed batch)')
+
+    if invalid:
+        print('Batch-root check: INVALID')
+        return 1
+    if incomplete:
+        print('Batch-root check: INDETERMINATE')
+        return 2
+    print('Batch-root check: MATCH (local hashes only; not authenticated)')
+    return 0
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description='Check local roots in a legacy VCP export; no authentication.')
+    parser.add_argument('evidence_dir', nargs='?', type=Path,
+                        default=Path(__file__).resolve().parent,
+                        help='directory containing exported batches.json (default: this script directory)')
+    args = parser.parse_args(argv)
+    return check_batches(args.evidence_dir)
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())
 ";
         }
 
@@ -743,22 +820,36 @@ if __name__ == '__main__':
             return $@"# VCP v1.1 エビデンスパッケージ
 
 ## 概要
-このパッケージにはVCP (VeritasChain Protocol) v1.1準拠のトレードエビデンスが含まれています。
+VCP (VeritasChain Protocol) v1.1を対象としたレガシー参照コードのローカル記録です。
+認証済みの証拠、外部タイムスタンプ、VCP適合性を示すものではありません。
 
 ## ファイル構成
 - `events.json` - 全トレードイベント
 - `batches.json` - Merkleバッチ情報（包含証明付き）
-- `anchors.json` - 外部アンカーレコード
-- `verify.py` - Python検証スクリプト
+- `anchors.json` - アンカーレコード（外部証明の検証は行いません）
+- `verify.py` - バッチ内のローカルMerkleルート照合スクリプト
 
 ## 検証方法
 ```bash
 python verify.py
 ```
 
-## VCP準拠情報
+このスクリプトは`batches.json`の配列だけを読み、各バッチのハッシュ形式、
+宣言イベント数、Merkleルートを照合します。奇数ノードを複製する歴史的な
+構築方式を維持しています。RFC 6962のツリー構築方式ではありません。
+
+- 終了コード0: 1件以上の非空バッチのローカルルートがすべて一致
+- 終了コード1: 不一致、形式不正、または不正なJSON
+- 終了コード2: 入力を読めない、空のバッチ、またはコマンドの使い方の誤り
+
+`--help`も終了コード0を返しますが、照合は実行しません。
+イベント本文、ハッシュチェーン、包含証明、署名、外部アンカー、発生源、
+完全性、VCP適合性は検証しません。終了コード0はパッケージ全体の認証を意味しません。
+同じローカルファイル内でハッシュとルートを整合するように更新しても一致します。
+
+## 設定宣言（適合性の検証結果ではありません）
 - プロトコルバージョン: 1.1
-- コンプライアンス階層: {_config.EventConfig.ConformanceTier}
+- 設定上の階層: {_config.EventConfig.ConformanceTier}
 - ポリシーID: {_config.EventConfig.PolicyID}
 - エクスポート日時: {DateTimeOffset.UtcNow:O}
 
