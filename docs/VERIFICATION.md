@@ -1,5 +1,14 @@
 # VCP Verification Guide
 
+> **Current export checker — 15 November 2026**
+>
+> Newly exported `verify.py` scripts check only the hashes, counts and Merkle
+> roots supplied in the export's `batches.json` array. They do not read event or
+> anchor files and cannot authenticate a package. Exit code 0 means local batch
+> roots matched, not that the evidence or VCP conformity was verified. See
+> [current export checks](EXPORT_CHECKS.md) for the exact behavior. The preserved
+> sample verifier and illustrative manual snippets below have a different scope.
+
 > **Verification scope — 30 October 2026**
 >
 > This guide describes legacy VCP v1.1 tooling, not an established conformance assessment. The preserved [sample pack](../evidence/sample_pack_2025Q1/) contains 21 unsigned events and one unsigned `LOCAL_FILE` anchor; it does not demonstrate an external timestamp. Its `verify.py` compares the local anchor proof with the hash of the stored Merkle-root string, and returns success for other anchor types without verifying an external proof. The snippets and output below are illustrative; they do not establish signature verification, external anchoring, completeness, or tier conformance. See the [current repository status](../README.md).

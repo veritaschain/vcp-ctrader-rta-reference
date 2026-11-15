@@ -26,6 +26,20 @@ pack files. The preserved pack's README and verifier still contain historical
 RFC/compliance wording; their hash manifest remains unchanged. Read the current
 [construction limitations](docs/MERKLE_LIMITATIONS.md) before using that pack.
 
+## Current export checker — 15 November 2026
+
+New packages produced by `ExportVerificationPackageAsync` contain a checker for
+**local batch-root consistency only**. It reads the exported `batches.json` array,
+accepts the exporter's UTF-8 BOM, validates batch IDs/hash shapes/counts and returns
+nonzero for mismatches, malformed input, missing files or empty batches. Its output
+and generated README now state the limited scope; matching local batch roots do
+not authenticate events or anchors. See [current export checks](docs/EXPORT_CHECKS.md)
+for exit codes and offline regressions.
+
+This changes neither the historical Merkle construction nor any file under
+`evidence/sample_pack_2025Q1/`. The preserved sample uses its own older verifier
+and a different JSON wrapper; the current export checker does not replace it.
+
 ## Features
 
 - 🔐 **VCP v1.1 Silver target** - Conformance not established (see the status correction above)
@@ -180,7 +194,7 @@ vcp-ctrader-rta-reference/
 │   └── VERIFICATION.md               # Verification guide
 └── .github/
     └── workflows/
-        └── dotnet.yml                # CI: Build + Evidence Verification
+        └── export-regression.yml     # CI: Local checks + offline C# export
 ```
 
 ## Sample Evidence Pack
@@ -193,7 +207,7 @@ cd evidence/sample_pack_2025Q1
 # Quick integrity check via hash manifest
 cat hash_manifest.json | python3 -c "import sys,json; [print(f'{k}: {v[\"sha256\"][:16]}...') for k,v in json.load(sys.stdin)['files'].items()]"
 
-# Full verification
+# Historical local checks; read the current scope limitations above
 python verify.py
 ```
 
